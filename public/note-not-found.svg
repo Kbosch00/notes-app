@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Sombra suave para la hoja principal -->
+    <filter id="drop-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0F172A" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0F172A" flood-opacity="0.04" />
+    </filter>
+
+    <!-- Gradient de acento (Azul Indigo a Violeta) -->
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+
+    <!-- Gradient secundario suave -->
+    <linearGradient id="soft-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+
+    <!-- Patrón de cuadrícula para la nota -->
+    <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#E2E8F0" stroke-width="0.8" />
+    </pattern>
+  </defs>
+
+  <!-- Elementos de Fondo (Decorativos) -->
+  <g opacity="0.6">
+    <!-- Círculos abstractos de fondo -->
+    <circle cx="200" cy="150" r="110" fill="#F1F5F9" />
+    <circle cx="280" cy="80" r="6" fill="#6366F1" opacity="0.3" />
+    <circle cx="110" cy="220" r="8" fill="#818CF8" opacity="0.4" />
+    <circle cx="300" cy="210" r="4" fill="#CBD5E1" />
+    
+    <!-- Destellos / Estrellas -->
+    <path d="M120 80 L122 86 L128 88 L122 90 L120 96 L118 90 L112 88 L118 86 Z" fill="#6366F1" opacity="0.3" />
+    <path d="M280 230 L281.5 234.5 L286 236 L281.5 237.5 L280 242 L278.5 237.5 L274 236 L278.5 234.5 Z" fill="#818CF8" opacity="0.5" />
+  </g>
+
+  <!-- Documento en fondo (Efecto apilado) -->
+  <rect x="135" y="45" width="130" height="170" rx="12" fill="#E2E8F0" transform="rotate(-6 200 130)" />
+
+  <!-- Documento Principal -->
+  <g filter="url(#drop-shadow)">
+    <!-- Base de la hoja -->
+    <rect x="135" y="45" width="130" height="170" rx="12" fill="#FFFFFF" />
+    
+    <!-- Textura de cuadrícula de libreta -->
+    <rect x="135" y="45" width="130" height="170" rx="12" fill="url(#grid)" opacity="0.7" />
+
+    <!-- Doblez de la esquina superior derecha -->
+    <path d="M 241 45 L 265 69 L 253 69 C 246.373 69 241 63.627 241 57 Z" fill="#E2E8F0" />
+
+    <!-- Líneas de texto simuladas (Incompletas / Búsqueda) -->
+    <!-- Encabezado -->
+    <rect x="155" y="75" width="55" height="8" rx="4" fill="#6366F1" />
+    
+    <!-- Parrafos simulados -->
+    <rect x="155" y="98" width="90" height="5" rx="2.5" fill="#CBD5E1" />
+    <rect x="155" y="111" width="75" height="5" rx="2.5" fill="#E2E8F0" />
+    <rect x="155" y="124" width="82" height="5" rx="2.5" fill="#E2E8F0" />
+    <rect x="155" y="137" width="40" height="5" rx="2.5" fill="#E2E8F0" />
+  </g>
+
+  <!-- Lupa de Búsqueda (Elemento central "Not Found") -->
+  <g transform="translate(10, 5)">
+    <!-- Sombra de la lupa -->
+    <path d="M195 175 L225 205" stroke="#0F172A" stroke-width="14" stroke-linecap="round" opacity="0.06" />
+    
+    <!-- Mango de la Lupa -->
+    <path d="M195 175 L225 205" stroke="url(#accent-grad)" stroke-width="10" stroke-linecap="round" />
+    <path d="M198 178 L222 202" stroke="#4F46E5" stroke-width="4" stroke-linecap="round" opacity="0.4" />
+
+    <!-- Borde Exterior del Lente -->
+    <circle cx="165" cy="145" r="38" fill="#FFFFFF" stroke="#6366F1" stroke-width="7" />
+    
+    <!-- Interior del Lente con degradado suave -->
+    <circle cx="165" cy="145" r="34.5" fill="url(#soft-grad)" />
+
+    <!-- Signo '?' o Exclamación de 'No encontrado' dentro del lente -->
+    <g transform="translate(165, 145) scale(0.85)">
+      <!-- Carita triste / Signo de interrogación estilizado -->
+      <path d="M-10 -6 C-10 -16, 10 -16, 10 -6 C10 4, 0 2, 0 10" fill="none" stroke="#818CF8" stroke-width="4.5" stroke-linecap="round" />
+      <circle cx="0" cy="19" r="2.5" fill="#818CF8" />
+    </g>
+
+    <!-- Brillo del cristal de la lupa -->
+    <path d="M 142 130 A 28 28 0 0 1 178 120" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+  </g>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Sombra suave para los elementos principales -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0F172A" flood-opacity="0.07" />
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.04" />
+    </filter>
+
+    <!-- Gradiante de Acento (Indigo a Violeta) -->
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+
+    <!-- Gradiante para el botón de añadir -->
+    <linearGradient id="plus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo Decorativo -->
+  <g opacity="0.5">
+    <!-- Círculo suave de fondo -->
+    <circle cx="200" cy="140" r="105" fill="#F1F5F9" />
+    
+    <!-- Hojas/Naturaleza decorativa (Estilo ilustración moderna) -->
+    <path d="M 120 220 C 110 180, 70 180, 70 220 Z" fill="#E2E8F0" />
+    <path d="M 280 220 C 290 170, 330 180, 330 220 Z" fill="#E2E8F0" />
+
+    <!-- Chispas / Estrellas -->
+    <path d="M 110 100 L 112 106 L 118 108 L 112 110 L 110 116 L 108 110 L 102 108 L 108 106 Z" fill="#818CF8" opacity="0.6" />
+    <path d="M 295 90 L 296.5 94.5 L 301 96 L 296.5 97.5 L 295 102 L 293.5 97.5 L 289 96 L 293.5 94.5 Z" fill="#6366F1" opacity="0.4" />
+    <circle cx="305" cy="190" r="4" fill="#CBD5E1" />
+    <circle cx="95" cy="170" r="5" fill="#CBD5E1" />
+  </g>
+
+  <!-- Grupo de Bloc de Notas Central -->
+  <g filter="url(#shadow)">
+    <!-- Hoja trasera 2 -->
+    <rect x="120" y="70" width="160" height="150" rx="14" fill="#E2E8F0" transform="rotate(-8 200 145)" />
+    
+    <!-- Hoja trasera 1 -->
+    <rect x="120" y="70" width="160" height="150" rx="14" fill="#F8FAFC" transform="rotate(-4 200 145)" />
+
+    <!-- Hoja Principal (Vacía con guías de checklist) -->
+    <rect x="120" y="65" width="160" height="155" rx="14" fill="#FFFFFF" />
+
+    <!-- Clip superior del bloc -->
+    <rect x="175" y="55" width="50" height="14" rx="5" fill="#CBD5E1" />
+    <rect x="185" y="50" width="30" height="8" rx="4" fill="#94A3B8" />
+
+    <!-- Guías de notas vacías (Checklists vacíos) -->
+    <!-- Fila 1 -->
+    <circle cx="148" cy="100" r="7" fill="none" stroke="#E2E8F0" stroke-width="2" />
+    <rect x="165" y="97" width="85" height="6" rx="3" fill="#F1F5F9" />
+
+    <!-- Fila 2 -->
+    <circle cx="148" cy="128" r="7" fill="none" stroke="#E2E8F0" stroke-width="2" />
+    <rect x="165" y="125" width="65" height="6" rx="3" fill="#F1F5F9" />
+
+    <!-- Fila 3 -->
+    <circle cx="148" cy="156" r="7" fill="none" stroke="#E2E8F0" stroke-width="2" />
+    <rect x="165" y="153" width="75" height="6" rx="3" fill="#F1F5F9" />
+
+    <!-- Fila 4 -->
+    <circle cx="148" cy="184" r="7" fill="none" stroke="#E2E8F0" stroke-width="2" opacity="0.6" />
+    <rect x="165" y="181" width="45" height="6" rx="3" fill="#F1F5F9" opacity="0.6" />
+  </g>
+
+  <!-- Lápiz flotante llamando a escribir -->
+  <g transform="translate(195, 125) rotate(-25)" filter="url(#shadow)">
+    <!-- Cuerpo del Lápiz -->
+    <path d="M 60 0 L 85 0 A 4 4 0 0 1 89 4 L 89 16 A 4 4 0 0 1 85 20 L 60 20 Z" fill="#818CF8" />
+    <path d="M 15 0 L 60 0 L 60 20 L 15 20 Z" fill="url(#accent-grad)" />
+    
+    <!-- Goma de borrar (atrás) -->
+    <path d="M 85 0 L 93 0 A 5 5 0 0 1 98 5 L 98 15 A 5 5 0 0 1 93 20 L 85 20 Z" fill="#F472B6" />
+    <rect x="82" y="0" width="5" height="20" fill="#CBD5E1" />
+
+    <!-- Punta de madera y grafito (adelante) -->
+    <polygon points="15,0 0,10 15,20" fill="#FDE68A" />
+    <polygon points="5,6.6 0,10 5,13.3" fill="#1E293B" />
+  </g>
+
+  <!-- Botón flotante "Añadir / Crear Nota" (+) -->
+  <g transform="translate(245, 170)" filter="url(#shadow)">
+    <circle cx="22" cy="22" r="22" fill="url(#plus-grad)" />
+    <!-- Icono más (+) -->
+    <path d="M 22 13 L 22 31 M 13 22 L 31 22" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+</svg>
