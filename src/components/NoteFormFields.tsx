@@ -1,9 +1,12 @@
+"use client";
+
 import { useState, type SubmitEvent } from "react";
 import Link from "next/link";
 import { useNotes } from "./NotesProvider";
 import { useRouter } from "next/navigation";
 import { Note, NoteFormFieldsProps } from "@/src/types/notes";
 import { toast } from "react-toastify";
+import { createNote } from "@/src/app/actions/notes";
 
 function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
   const { addNote, updateNote, deleteNote } = useNotes();
@@ -11,20 +14,25 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
   const [content, setContent] = useState(initialNote?.content ?? "");
   const [confirmDelete, setConfirmDelete] = useState(true);
   const router = useRouter();
-
-  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const trimmedTitle = title.trim();
     const trimmedContent = content.trim();
-    if (!trimmedTitle || !trimmedContent) return;
-
+    if (!trimmedTitle) {
+      toast.warning("Titulo requerido");
+      return;
+    }
     if (isCreate) {
+      const result = await createNote(trimmedTitle, trimmedContent);
       const newNote: Note = {
         id: Date.now(),
         title: trimmedTitle,
         content: trimmedContent,
       };
       addNote(newNote);
+      if (result.ok) {
+        toast.success("Ta melo el actions de crear");
+      }
       toast.success("Nota creada");
     } else {
       if (!initialNote) return;
@@ -37,12 +45,12 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
     router.push("/notes");
   };
 
-  const handleDeleteNote = (id: number) => {
+  const handleDeleteNote = async (id: number) => {
     if (!isCreate) {
       deleteNote(id);
       toast.error("Nota eliminada");
     } else {
-      //toast.error("No se eliminó correctamente");
+      toast.error("Ocurrió un error al eliminar la nota");
     }
     router.push("/notes");
   };
@@ -94,8 +102,8 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
 
         <button
           type="submit"
-          className="text-4xl p-2 min-w-auto bg-white/20 text-white hover:bg-sky-500  hover:animate-pulse 
-        transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer"
+          className="text-4xl p-2 min-w-auto bg-white/20 text-white hover:bg-sky-500 hover:animate-pulse 
+            transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer"
         >
           {isCreate ? "Guardar nota" : "Actualizar nota"}
         </button>
@@ -104,7 +112,7 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
             <button
               type="button"
               className={`${isCreate ? "hidden" : ""} text-4xl p-2 min-w-auto bg-white/20 text-white hover:bg-red-500  hover:animate-pulse 
-        transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer mx-2`}
+                transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer mx-2`}
               onClick={() => setConfirmDelete(!confirmDelete)}
             >
               Eliminar
@@ -121,7 +129,7 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
                     <button
                       type="button"
                       className="text-lg p-1 w-1/2  text-white hover:bg-red-400 hover:animate-pulse 
-              transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer mx-2"
+                        transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer mx-2"
                       onClick={() => {
                         handleDeleteNote(initialNote.id);
                         setConfirmDelete(!confirmDelete);
@@ -132,7 +140,7 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
                     <button
                       type="button"
                       className="text-lg p-1 w-1/2  text-white hover:bg-red-400 hover:animate-pulse 
-              transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer mx-2"
+                        transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer mx-2"
                       onClick={() => {
                         setConfirmDelete(!confirmDelete);
                       }}

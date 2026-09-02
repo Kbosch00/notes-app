@@ -2,7 +2,7 @@ import NotesList from "@/src/components/NotesList";
 import Link from "next/link";
 export default function NotesPage() {
   return (
-    <div className="flex flex-col items-center p-4 gap-2">
+    <div className="flex flex-col items-center p-4">
       <div className="flex bg-white/20 rounded-lg w-full p-2 justify-between">
         <h1 className="text-6xl font-bold text-white">Notas</h1>
         <Link
