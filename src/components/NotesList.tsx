@@ -1,12 +1,11 @@
 "use client";
 
-import { useNotes } from "./NotesProvider";
 import NoteCard from "./NoteCard";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { NoteItem } from "@/src/types/notes";
 
-export default function NotesList() {
-  const { notes } = useNotes();
+export default function NotesList({ notes }: { notes: NoteItem[] }) {
   const router = useRouter();
   const handleSelectNote = (id: number) => {
     router.push(`/notes/${id}`);
@@ -34,7 +33,7 @@ export default function NotesList() {
             key={note.id}
             id={note.id}
             title={note.title}
-            content={note.content}
+            content={note.content ?? ""}
             onSelect={handleSelectNote}
           />
         ))

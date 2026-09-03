@@ -10,6 +10,12 @@ export type Note = {
   content: string;
 };
 
+export type NoteItem = {
+  id: number;
+  title: string;
+  content: string | null;
+};
+
 export type NotesContextValue = {
   notes: Note[];
   addNote: (note: Note) => void;

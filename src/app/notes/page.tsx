@@ -1,6 +1,9 @@
 import NotesList from "@/src/components/NotesList";
 import Link from "next/link";
-export default function NotesPage() {
+import { getNotes } from "@/src/app/actions/notes";
+
+export default async function NotesPage() {
+  const notes = await getNotes();
   return (
     <div className="flex flex-col items-center p-4">
       <div className="flex bg-white/20 rounded-lg w-full p-2 justify-between">
@@ -25,7 +28,7 @@ export default function NotesPage() {
           </svg>
         </Link>
       </div>
-      <NotesList />
+      <NotesList notes={notes} />
       <Link
         className="text-4xl p-2 w-min bg-white/20 text-white hover:bg-lime-600 hover:border-lime-700 hover:text-5xl hover:animate-pulse
         transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer "

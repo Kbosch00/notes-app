@@ -1,0 +1,45 @@
+[
+  {
+    "id": "alterNullability.dropNotNull.note.content",
+    "label": "Drop NOT NULL on \"note\".\"content\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "content",
+        "table": "note"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"content\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "note",
+          "content"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop NOT NULL on \"content\"",
+        "sql": "ALTER TABLE \"public\".\"note\" ALTER COLUMN \"content\" DROP NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"content\" is nullable",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"is_nullable\" = $4)) AS \"result\"",
+        "params": [
+          "public",
+          "note",
+          "content",
+          "YES"
+        ]
+      }
+    ]
+  }
+]

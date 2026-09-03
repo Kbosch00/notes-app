@@ -2,14 +2,12 @@
 
 import { useState, type SubmitEvent } from "react";
 import Link from "next/link";
-import { useNotes } from "./NotesProvider";
 import { useRouter } from "next/navigation";
 import { Note, NoteFormFieldsProps } from "@/src/types/notes";
 import { toast } from "react-toastify";
-import { createNote } from "@/src/app/actions/notes";
+import { createNote, updateNote, deleteNote } from "@/src/app/actions/notes";
 
 function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
-  const { addNote, updateNote, deleteNote } = useNotes();
   const [title, setTitle] = useState(initialNote?.title ?? "");
   const [content, setContent] = useState(initialNote?.content ?? "");
   const [confirmDelete, setConfirmDelete] = useState(true);
@@ -24,33 +22,31 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
     }
     if (isCreate) {
       const result = await createNote(trimmedTitle, trimmedContent);
-      const newNote: Note = {
-        id: Date.now(),
-        title: trimmedTitle,
-        content: trimmedContent,
-      };
-      addNote(newNote);
       if (result.ok) {
-        toast.success("Ta melo el actions de crear");
+        toast.success("Nota creada");
+      } else {
+        toast.error("Ocurrió un error al crear la nota");
       }
-      toast.success("Nota creada");
     } else {
       if (!initialNote) return;
-      updateNote(initialNote.id, {
-        title: trimmedTitle,
-        content: trimmedContent,
-      });
-      toast.info("Nota actualizada");
+      const result = await updateNote(initialNote.id, title, content);
+      if (result.ok) {
+        toast.info("Nota actualizada");
+      } else {
+        toast.error("Ocurrió un error al actualizar la nota");
+      }
     }
     router.push("/notes");
   };
 
   const handleDeleteNote = async (id: number) => {
     if (!isCreate) {
-      deleteNote(id);
-      toast.error("Nota eliminada");
-    } else {
-      toast.error("Ocurrió un error al eliminar la nota");
+      const result = await deleteNote(id);
+      if (result.ok) {
+        toast.error("Nota eliminada");
+      } else {
+        toast.error("Ocurrió un error al eliminar la nota");
+      }
     }
     router.push("/notes");
   };

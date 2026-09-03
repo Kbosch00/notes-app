@@ -1,17 +1,14 @@
-"use client";
-import { useParams } from "next/navigation";
-import { useNotes } from "@/src/components/NotesProvider";
 import NoteFormFields from "@/src/components/NoteFormFields";
 import Link from "next/link";
 import Image from "next/image";
+import { getNoteById } from "@/src/app/actions/notes";
 
-export default function NotePage() {
-  const params = useParams();
-  const id = Number(params.id);
-  const { notes } = useNotes();
+type Props = { params: Promise<{ id: string }> };
 
-  const note = notes.find((n) => n.id === id);
-
+export default async function NotePage({ params }: Props) {
+  const { id: idParam } = await params;
+  const id = Number(idParam);
+  const note = await getNoteById(id);
   if (!note) {
     return (
       <div className="fixed inset-0 z-50 flex flex-col items-center gap-4 justify-center">
@@ -35,5 +32,15 @@ export default function NotePage() {
     );
   }
 
-  return <NoteFormFields key={note.id} isCreate={false} initialNote={note} />;
+  return (
+    <NoteFormFields
+      key={note.id}
+      isCreate={false}
+      initialNote={{
+        id: note.id,
+        title: note.title,
+        content: note.content ?? "",
+      }}
+    />
+  );
 }
