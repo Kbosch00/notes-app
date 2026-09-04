@@ -1,5 +1,5 @@
 "use server";
-//import { Note } from "../../types/notes";
+
 import { db } from "@/src/prisma/db";
 import { revalidatePath } from "next/cache";
 

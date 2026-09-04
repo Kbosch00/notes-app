@@ -3,7 +3,7 @@
 import { useState, type SubmitEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Note, NoteFormFieldsProps } from "@/src/types/notes";
+import { NoteFormFieldsProps } from "@/src/types/notes";
 import { toast } from "react-toastify";
 import { createNote, updateNote, deleteNote } from "@/src/app/actions/notes";
 

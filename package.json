@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@prisma/orm-postgres": "^8.0.0-rc.8",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
-    "next": "16.3.3",
+    "next": "^16.3.4",
+    "next-auth": "^5.0.0-beta.32",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-toastify": "^11.1.0"
@@ -23,10 +25,10 @@
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react-dom": "^19.2.7",
     "eslint": "^9",
-    "eslint-config-next": "16.3.3",
-    "prisma": "^8.0.0-rc.10",
+    "eslint-config-next": "^16.3.4",
+    "prisma": "^8.0.0-rc.13",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

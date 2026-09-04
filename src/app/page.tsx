@@ -8,8 +8,8 @@ export default function Home() {
       </h1>
       <Link
         className="text-4xl bg-white/20 text-white hover:bg-lime-600 hover:border-lime-700 p-2  
-      hover:text-5xl transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer"
-        href={"/notes"}
+      hover:text-5xl hover:animate-pulse transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer"
+        href={"/login"}
       >
         Iniciar
       </Link>
