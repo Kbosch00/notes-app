@@ -2,9 +2,13 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { db } from "@/src/prisma/db";
+import Google from "next-auth/providers/google";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
+    Google({
+      allowDangerousEmailAccountLinking: true,
+    }),
     Credentials({
       name: "credentials",
       credentials: {
@@ -48,10 +52,28 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
+    async jwt({ token, user, account }) {
+      if (user?.id && account?.provider === "credentials") {
+        token.id = user.id;
+        return token;
+      }
+      if (account?.provider === "google" && token.email) {
+        const email = token.email.toLowerCase();
+        let dbUser = await db.orm.public.User.where({ email }).first();
+
+        if (!dbUser) {
+          dbUser = await db.orm.public.User.create({
+            email,
+            name: token.name ?? null,
+            passwordHash: null,
+          });
+        }
+
+        token.id = String(dbUser.id);
+      } else if (user?.id) {
         token.id = user.id;
       }
+
       return token;
     },
     async session({ session, token }) {

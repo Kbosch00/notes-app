@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { registerUser } from "@/src/app/actions/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import SignInGoogleButton from "@/src/components/SignInGoogleButton";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -96,7 +97,7 @@ export default function LoginPage() {
           ? "¿No tienes cuenta? Regístrate"
           : "¿Ya tienes cuenta? Inicia sesión"}
       </button>
-
+      <SignInGoogleButton />
       <Link
         href="/"
         className="text-4xl bg-white/20 text-white hover:bg-cyan-400 hover:border-cyan-700 p-2  
