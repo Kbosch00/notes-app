@@ -53,9 +53,32 @@
                   "codecId": "pg/timestamptz-string@1",
                   "kind": "scalar"
                 }
+              },
+              "userId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
               }
             },
-            "relations": {},
+            "relations": {
+              "user": {
+                "cardinality": "N:1",
+                "on": {
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
+                },
+                "to": {
+                  "model": "User",
+                  "namespace": "public"
+                }
+              }
+            },
             "storage": {
               "fields": {
                 "content": {
@@ -72,6 +95,9 @@
                 },
                 "updatedAt": {
                   "column": "updatedAt"
+                },
+                "userId": {
+                  "column": "userId"
                 }
               },
               "namespaceId": "public",
@@ -123,7 +149,23 @@
                 }
               }
             },
-            "relations": {},
+            "relations": {
+              "notes": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
+                },
+                "to": {
+                  "model": "Note",
+                  "namespace": "public"
+                }
+              }
+            },
             "storage": {
               "fields": {
                 "createdAt": {
@@ -192,10 +234,41 @@
                   "codecId": "pg/timestamptz-string@1",
                   "nativeType": "timestamptz",
                   "nullable": false
+                },
+                "userId": {
+                  "codecId": "pg/int4@1",
+                  "nativeType": "int4",
+                  "nullable": false
                 }
               },
-              "foreignKeys": [],
-              "indexes": [],
+              "foreignKeys": [
+                {
+                  "source": {
+                    "columns": [
+                      "userId"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "note"
+                  },
+                  "target": {
+                    "columns": [
+                      "id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "user"
+                  }
+                }
+              ],
+              "indexes": [
+                {
+                  "columns": [
+                    "userId"
+                  ],
+                  "name": "note_userId_idx_a489d58a",
+                  "prefix": "note_userId_idx",
+                  "unique": false
+                }
+              ],
               "primaryKey": {
                 "columns": [
                   "id"
@@ -265,7 +338,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "a90562313ad214081c2dcc3d8baae51e1db22be7ff26677811707d0efddf0fb4"
+    "storageHash": "d1c4c91d62c359dd3bb028d79285df12f697cc8bbed7fccadc59a467c5e121e1"
   },
   "execution": {
     "executionHash": "4841f0b6281ae00842dc8a6b99828eb580e2aec2ec130202a6617a98ded9a7e4",

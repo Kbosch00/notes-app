@@ -78,7 +78,7 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
         {isCreate ? "Crear nota" : "Editar nota"}
       </h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 " id="note-form">
         <input
           type="text"
           value={title}
@@ -98,7 +98,7 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
 
         <button
           type="submit"
-          className="text-4xl p-2 min-w-auto bg-white/20 text-white hover:bg-sky-500 hover:animate-pulse 
+          className="text-xl md:text-4xl p-2  bg-white/20 text-white hover:bg-sky-500 hover:animate-pulse 
             transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer"
         >
           {isCreate ? "Guardar nota" : "Actualizar nota"}
@@ -107,7 +107,7 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
           <>
             <button
               type="button"
-              className={`${isCreate ? "hidden" : ""} text-4xl p-2 min-w-auto bg-white/20 text-white hover:bg-red-500  hover:animate-pulse 
+              className={`${isCreate ? "hidden" : ""} text-xl  md:text-4xl p-2  bg-white/20 text-white hover:bg-red-500  hover:animate-pulse 
                 transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer mx-2`}
               onClick={() => setConfirmDelete(!confirmDelete)}
             >

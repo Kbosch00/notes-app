@@ -1,4 +1,5 @@
 import NoteFormFields from "@/src/components/NoteFormFields";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getNoteById } from "@/src/app/actions/notes";
@@ -6,9 +7,12 @@ import { getNoteById } from "@/src/app/actions/notes";
 type Props = { params: Promise<{ id: string }> };
 
 export default async function NotePage({ params }: Props) {
-  const { id: idParam } = await params;
-  const id = Number(idParam);
-  const note = await getNoteById(id);
+  const { id } = await params;
+  const noteId = Number(id);
+  if (!Number.isFinite(noteId)) {
+    notFound();
+  }
+  const note = await getNoteById(noteId);
   if (!note) {
     return (
       <div className="fixed inset-0 z-50 flex flex-col items-center gap-4 justify-center">
@@ -34,7 +38,6 @@ export default async function NotePage({ params }: Props) {
 
   return (
     <NoteFormFields
-      key={note.id}
       isCreate={false}
       initialNote={{
         id: note.id,

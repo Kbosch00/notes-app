@@ -1,5 +1,5 @@
-import NoteForm from "@/src/components/NoteForm";
+import NoteFormFields from "@/src/components/NoteFormFields";
 
 export default function newNote() {
-  return <NoteForm />;
+  return <NoteFormFields isCreate={true} />;
 }

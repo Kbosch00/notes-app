@@ -78,7 +78,7 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-lime-500 text-white font-bold py-2 rounded hover:bg-lime-600 hover:border-lime-700 
+          className="bg-cyan-400 text-white font-bold py-2 rounded hover:bg-cyan-400 hover:border-cyan-700 
           disabled:opacity-50 cursor-pointer hover:animate-pulse transition-all duration-300 "
         >
           {loading ? "..." : mode === "login" ? "Entrar" : "Registrarme"}
@@ -99,7 +99,7 @@ export default function LoginPage() {
 
       <Link
         href="/"
-        className="text-4xl bg-white/20 text-white hover:bg-lime-600 hover:border-lime-700 p-2  
+        className="text-4xl bg-white/20 text-white hover:bg-cyan-400 hover:border-cyan-700 p-2  
       hover:text-5xl hover:animate-pulse transition-all duration-300 font-bold rounded text-shadow-2xs cursor-pointer"
       >
         Volver

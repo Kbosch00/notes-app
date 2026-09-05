@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-linear-to-b from-lime-600 via-lime-500/80 to-lime-600">
+      <body className="min-h-full bg-linear-to-b from-cyan-600 via-cyan-300 to-cyan-600">
         <Providers>
           {children}
           <ToastContainer autoClose={1500} position="top-center" />
