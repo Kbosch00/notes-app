@@ -6,7 +6,13 @@ export default function SignInGoogleButton() {
       type="button"
       title="Iniciar sesión con Google"
       className="w-fit p-2 bg-white text-black font-semibold py-2 rounded hover:bg-gray-100 flex justify-center items-center cursor-pointer"
-      onClick={() => signIn("google", { callbackUrl: "/notes" })}
+      onClick={() =>
+        signIn(
+          "google",
+          { callbackUrl: "/notes" },
+          { prompt: "select_account" },
+        )
+      }
     >
       Continuar con
       {
