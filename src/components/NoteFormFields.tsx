@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type SubmitEvent } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NoteFormFieldsProps } from "@/src/types/notes";
@@ -12,7 +12,7 @@ function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
   const [content, setContent] = useState(initialNote?.content ?? "");
   const [confirmDelete, setConfirmDelete] = useState(true);
   const router = useRouter();
-  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const trimmedTitle = title.trim();
     const trimmedContent = content.trim();
