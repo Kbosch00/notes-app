@@ -1,12 +1,12 @@
 "use client";
 
 import NoteCard from "./NoteCard";
-import { useRouter } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
 import { NoteItem } from "@/src/types/notes";
 
 export default function NotesList({ notes }: { notes: NoteItem[] }) {
-  const router = useRouter();
+  const router = useTransitionRouter();
   const handleSelectNote = (id: number) => {
     router.push(`/notes/${id}`);
   };

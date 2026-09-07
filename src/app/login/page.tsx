@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
 import { registerUser } from "@/src/app/actions/auth";
 import { toast } from "react-toastify";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import SignInGoogleButton from "@/src/components/SignInGoogleButton";
 
 export default function LoginPage() {
-  const router = useRouter();
+  const router = useTransitionRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState<"login" | "register">("login");

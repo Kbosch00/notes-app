@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "next-view-transitions";
 import { NoteFormFieldsProps } from "@/src/types/notes";
 import { toast } from "react-toastify";
 import { createNote, updateNote, deleteNote } from "@/src/app/actions/notes";
+import { useTransitionRouter } from "next-view-transitions";
 
 function NoteFormFields({ isCreate, initialNote }: NoteFormFieldsProps) {
   const [title, setTitle] = useState(initialNote?.title ?? "");
   const [content, setContent] = useState(initialNote?.content ?? "");
   const [confirmDelete, setConfirmDelete] = useState(true);
-  const router = useRouter();
+  const router = useTransitionRouter();
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const trimmedTitle = title.trim();

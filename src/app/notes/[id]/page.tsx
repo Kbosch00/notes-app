@@ -1,6 +1,6 @@
 import NoteFormFields from "@/src/components/NoteFormFields";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { getNoteById } from "@/src/app/actions/notes";
 

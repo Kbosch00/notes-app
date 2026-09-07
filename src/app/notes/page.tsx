@@ -1,5 +1,5 @@
 import NotesList from "@/src/components/NotesList";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getNotes } from "@/src/app/actions/notes";
 import SignOutButton from "@/src/components/SignOutButton";
 
